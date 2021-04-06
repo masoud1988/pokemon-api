@@ -1,7 +1,17 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require_relative '../lib/pokemon_importer'
+
+
+puts 'creating users...'
+user_1 = User.create!(email: 'user_1@gmail.com', password: 123456)
+user_2 = User.create!(email: 'user_2@gmail.com', password: 123456)
+user_3 = User.create!(email: 'user_3@gmail.com', password: 123456)
+puts 'created users'
+
+
+puts 'creating pokemons'
+unless Pokemon.any?
+    data = File.join(Rails.root, 'db/data/pokemon.csv')
+    poke_importer = PokemonImporter.new(data)
+    poke_importer.fetch
+end
+puts 'created pokemons'

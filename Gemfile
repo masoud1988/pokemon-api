@@ -26,6 +26,8 @@ gem 'devise'
 
 gem 'pundit'
 
+gem 'simple_token_authentication'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

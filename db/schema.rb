@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_04_07_141745) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "pokemons", force: :cascade do |t|
     t.integer "number", null: false
     t.string "name", default: "", null: false
@@ -26,7 +29,7 @@ ActiveRecord::Schema.define(version: 2021_04_07_141745) do
     t.integer "speed", default: 0, null: false
     t.integer "generation", null: false
     t.boolean "legendary", default: false, null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_pokemons_on_user_id"

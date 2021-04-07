@@ -1,5 +1,7 @@
 class Api::V1::PokemonsController < Api::V1::BaseController
+
     acts_as_token_authentication_handler_for User, except: [ :index, :show ]
+    before_action :set_pokemon, only: [ :show, :update, :destroy]
 
     def index
         @pokemons = policy_scope(Pokemon)
@@ -7,8 +9,6 @@ class Api::V1::PokemonsController < Api::V1::BaseController
     end
 
     def show
-        @pokemon = Pokemon.find(params[:id])
-        authorize @pokemon
         render json: @pokemon
     end
     
@@ -24,8 +24,6 @@ class Api::V1::PokemonsController < Api::V1::BaseController
     end
     
     def update
-        @pokemon = Pokemon.find(params[:id])
-        authorize @pokemon
         if @pokemon.update(pokemon_params)
             render json: @pokemon
         else
@@ -34,18 +32,20 @@ class Api::V1::PokemonsController < Api::V1::BaseController
     end
 
     def destroy
-        @pokemon = Pokemon.find(params[:id])
-        authorize @pokemon
         @pokemon.destroy
         render json: {status: 'SUCCESS', message: 'Pokemon deleted', data: ''}, status: :ok
     end
-
+    
     private
-
+    
     def pokemon_params
         params.require(:pokemon).permit(:number, :name, :type_1, :type_2, :total,
-            :hp, :attack, :defense, :sp_atk, :sp_def, :speed, :generation, :legendary)
+        :hp, :attack, :defense, :sp_atk, :sp_def, :speed, :generation, :legendary)
     end
-
+    
+    def set_pokemon
+        @pokemon = Pokemon.find(params[:id])
+        authorize @pokemon
+    end
 
 end

@@ -33,6 +33,12 @@ class Api::V1::PokemonsController < Api::V1::BaseController
         end
     end
 
+    def destroy
+        @pokemon = Pokemon.find(params[:id])
+        authorize @pokemon
+        @pokemon.destroy
+        render json: {status: 'SUCCESS', message: 'Pokemon deleted', data: ''}, status: :ok
+    end
 
     private
 
@@ -40,4 +46,6 @@ class Api::V1::PokemonsController < Api::V1::BaseController
         params.require(:pokemon).permit(:number, :name, :type_1, :type_2, :total,
             :hp, :attack, :defense, :sp_atk, :sp_def, :speed, :generation, :legendary)
     end
+
+
 end

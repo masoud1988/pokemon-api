@@ -58,13 +58,15 @@ class Api::V1::PokemonsController < Api::V1::BaseController
         @per_page ||= params[:per_page] || 10
     end
 
-    def set_pagination_headers(p_c)
-        headers["X-Total-Count"] = p_c.total_count
+    def set_pagination_headers(pokemon_collector)
+
+        headers["X-Total-Count"] = pokemon_collector.total_count
+
         links = []
-        links << page_link(1, "first") unless p_c.first_page?
-        links << page_link(p_c.prev_page, "prev") if p_c.prev_page
-        links << page_link(p_c.next_page, "next") if p_c.next_page
-        links << page_link(p_c.total_pages, "last") unless p_c.last_page?
+        links << page_link(1, "first") unless pokemon_collector.first_page?
+        links << page_link(pokemon_collector.prev_page, "prev") if pokemon_collector.prev_page
+        links << page_link(pokemon_collector.next_page, "next") if pokemon_collector.next_page
+        links << page_link(pokemon_collector.total_pages, "last") unless pokemon_collector.last_page?
 
         headers["Link"] = links.join(", ") if links.present?
     end

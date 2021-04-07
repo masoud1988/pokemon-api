@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_06_221103) do
+ActiveRecord::Schema.define(version: 2021_04_07_141745) do
 
   create_table "pokemons", force: :cascade do |t|
     t.integer "number", null: false
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 2021_04_06_221103) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "authentication_token", limit: 30
+    t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

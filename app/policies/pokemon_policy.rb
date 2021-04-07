@@ -8,4 +8,12 @@ class PokemonPolicy < ApplicationPolicy
   def show?
     true
   end
+
+  def create?
+    record.user == user
+  end
+  
+  def update?
+    record.user == user
+  end
 end

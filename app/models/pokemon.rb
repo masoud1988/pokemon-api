@@ -8,4 +8,11 @@ class Pokemon < ApplicationRecord
   validates :speed, presence: true
   validates :generation, presence: true
 
+  include PgSearch::Model
+  pg_search_scope :search_by_name,
+    against: [ :name, :type_1, :type_2],
+    using: {
+      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+    }
+
 end

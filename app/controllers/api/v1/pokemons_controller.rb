@@ -5,9 +5,14 @@ class Api::V1::PokemonsController < Api::V1::BaseController
 
 
     def index
-        @pokemons = policy_scope(Pokemon.page(page).per(per_page))
-        set_pagination_headers(@pokemons)
-        render json: @pokemons
+        if params[:q].present?
+            @pokemons = policy_scope(Pokemon.search_by_name(params[:q]))
+            render json: @pokemons
+        else
+            @pokemons = policy_scope(Pokemon.page(page).per(per_page))
+            set_pagination_headers(@pokemons)
+            render json: @pokemons
+        end
     end
 
     def show

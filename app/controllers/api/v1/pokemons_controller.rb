@@ -7,16 +7,16 @@ class Api::V1::PokemonsController < Api::V1::BaseController
     def index
         if params[:q].present?
             @pokemons = policy_scope(Pokemon.search_by_name(params[:q]))
-            render json: @pokemons
+            render json: {status: 'SUCCESS', message: 'Restaurants loaded', data: @pokemons}, status: :ok
         else
             @pokemons = policy_scope(Pokemon.page(page).per(per_page))
             set_pagination_headers(@pokemons)
-            render json: @pokemons
+            render json: {status: 'SUCCESS', message: 'Restaurants loaded', data: @pokemons}, status: :ok
         end
     end
 
     def show
-        render json: @pokemon
+        render json: {status: 'SUCCESS', message: 'one restaurant loaded', data: @pokemons}, status: :ok
     end
     
     def create
@@ -24,9 +24,9 @@ class Api::V1::PokemonsController < Api::V1::BaseController
         @pokemon.user = current_user
         authorize @pokemon
         if @pokemon.save
-            render json: @pokemon
+            render json: {status: 'SUCCESS', message: 'Restaurant created', data: @pokemons}, status: :ok
         else
-            render json: {status: 'FAILED', message: 'Pokemon not created', data: '', error: 'not created'}, status: :bad_request
+            render json: {status: 'FAILED', message: 'Pokemon not created', data: 'not created', error: 'not created'}, status: :bad_request
         end
     end
     

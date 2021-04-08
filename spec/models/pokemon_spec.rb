@@ -52,7 +52,6 @@ RSpec.describe Pokemon, type: :model do
       poke_1.generation = nil
       expect(poke_1).not_to be_valid
     end
-
-
   end
+  
 end

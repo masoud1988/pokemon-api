@@ -7,7 +7,7 @@ class Api::V1::PokemonsController < Api::V1::BaseController
     def index
         if params[:q].present?
             @pokemons = policy_scope(Pokemon.search_by_name(params[:q]))
-            render json: {status: 'SUCCESS', message: 'Restaurants serached', data: @pokemons}, status: :ok
+            render json: {status: 'SUCCESS', message: 'Restaurants was searched', data: @pokemons}, status: :ok
         else
             @pokemons = policy_scope(Pokemon.page(page).per(per_page))
             set_pagination_headers(@pokemons)
@@ -32,7 +32,7 @@ class Api::V1::PokemonsController < Api::V1::BaseController
     
     def update
         if @pokemon.update(pokemon_params)
-            render json: @pokemon
+            render json: {status: 'SUCCESS', message: 'Restaurant updated', data: @pokemon}, status: :ok
         else
             render json: {status: 'FAILED', message: 'Pokemon not updated', data: '', error:  error}, status: :unprocessable_entity
         end

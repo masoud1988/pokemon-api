@@ -66,7 +66,6 @@ That is how you may use each of the CRUD requests:
        http://localhost:3000/api/v1/pokemons?page=5&per_page=50
        every page 50 pokemons . starting from id = 201
 
-
 ---
 
 ## TEST DRIVEN DEVELOPMENT

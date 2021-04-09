@@ -143,9 +143,9 @@ from **GitHub** repositiory and run it on your local machine.
 
 here is the test file:
 
-        ./spec/models/pokemons_spec.rb
+        ./spec/models/pokemon_spec.rb
         ./spec/requests/api/v1/pokemons_spec.rb
 
 to execute the test:
 
-        bundle exec rspec ./spec/models/pokemons_spec.rb --format documentation
+        bundle exec rspec ./spec/models/pokemon_spec.rb --format documentation

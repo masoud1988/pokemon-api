@@ -7,11 +7,9 @@
 That is how you may use each of the CRUD requests:
 
 - Read
-  GET # List all pokemons
-  https://petalmd-api.herokuapp.com/api/v1/pokemons
 
-        GET # Show a specific pokemon
-            https://petalmd-api.herokuapp.com/api/v1/pokemons/1
+        GET # List all pokemons  https://petalmd-api.herokuapp.com/api/v1/pokemons
+        GET # Show a specific pokemon https://petalmd-api.herokuapp.com/api/v1/pokemons/1
 
 - Create
 

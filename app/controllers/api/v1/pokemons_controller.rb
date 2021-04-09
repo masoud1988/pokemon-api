@@ -7,16 +7,16 @@ class Api::V1::PokemonsController < Api::V1::BaseController
     def index
         if params[:q].present?
             @pokemons = policy_scope(Pokemon.search_by_name(params[:q]))
-            render json: {status: 'SUCCESS', message: 'Restaurants was searched', data: @pokemons}, status: :ok
+            render json: {status: 'SUCCESS', message: 'Pokemon was searched', data: @pokemons}, status: :ok
         else
             @pokemons = policy_scope(Pokemon.page(page).per(per_page))
             set_pagination_headers(@pokemons)
-            render json: {status: 'SUCCESS', message: 'Restaurants loaded (paginated)', data: @pokemons}, status: :ok
+            render json: {status: 'SUCCESS', message: 'Pokemon loaded (paginated)', data: @pokemons}, status: :ok
         end
     end
 
     def show
-        render json: {status: 'SUCCESS', message: 'one restaurant loaded', data: @pokemon}, status: :ok
+        render json: {status: 'SUCCESS', message: 'Pokemon loaded', data: @pokemon}, status: :ok
     end
     
     def create
@@ -24,7 +24,7 @@ class Api::V1::PokemonsController < Api::V1::BaseController
         @pokemon.user = current_user
         authorize @pokemon
         if @pokemon.save
-            render json: {status: 'SUCCESS', message: 'Restaurant created', data: @pokemon}, status: :ok
+            render json: {status: 'SUCCESS', message: 'Pokemon created', data: @pokemon}, status: :ok
         else
             render json: {status: 'FAILED', message: 'Pokemon not created', data: 'not created', error: error}, status: :unprocessable_entity
         end
@@ -32,7 +32,7 @@ class Api::V1::PokemonsController < Api::V1::BaseController
     
     def update
         if @pokemon.update(pokemon_params)
-            render json: {status: 'SUCCESS', message: 'Restaurant updated', data: @pokemon}, status: :ok
+            render json: {status: 'SUCCESS', message: 'Pokemon updated', data: @pokemon}, status: :ok
         else
             render json: {status: 'FAILED', message: 'Pokemon not updated', data: '', error:  error}, status: :unprocessable_entity
         end

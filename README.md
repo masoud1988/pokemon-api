@@ -13,7 +13,7 @@ _THIS IS A HEROKU FREE ACCOUNT AND A LITTLE SLOW TO LOAD THE URL, PLEASE BE PATI
 
         https://petalmd-api.herokuapp.com/api/v1/pokemons
 
-and it could be tested with the **Postman**.
+and it could be tested with **Postman**.
 
 In this project, **Devise** and **Pundit** have been used for _authorization_ and _authentication_,
 respectively. Besides, a **Simple Token Authentication** gem has been employed to send a

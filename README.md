@@ -1,4 +1,4 @@
-# Pokemones API - PetalMD
+# Pokemone API - PetalMD
 
 This is an **API Project** in which the data consists of 800 Pokemon on the **CSV** file
 imported to the projects as seed. This API include **CRUD actions, Search, Pagination**,
@@ -90,8 +90,8 @@ the most practical characteristics of **pg_search** instead of _ActiveRecord sea
 **Elasticsearch** is another great option to search, however, there was some limitation about deploying
 the project on **Heroku**, which’s why **pg_search** has been chosen.
 
-Data could be searched based on _names_, _type 1_, and _type 2_.
-To pass a _query_ (?q=(name , type_1, type_2)) to the URL to search a pokemon from the list as demonstrated:
+Data could be searched based on _name_, _type 1_, and _type 2_.
+To pass a _query_ (URL/?q=(name or type_1 or type_2)) to the URL to search a pokemon from the list as demonstrated:
 
     If pokemon with id=8 has a name like "CharizardMega Charizard Y" it could be find :
 
@@ -110,7 +110,7 @@ easy access and easy navigation within the pages.
 Pagination includes the _Total Count_ of
 pokemon, _first page_ and _last page_, _previous page_ and _next page_.
 
-**Pages** and **par_page** could pass to the URL as a parameter to get the pagination.
+**Page** and **par_page** could pass to the URL as a parameter to get the pagination.
 There are 10 pokemon on every page by default.
 
         https://petalmd-api.herokuapp.com/api/v1/pokemons

@@ -1,6 +1,8 @@
 class Api::V1::BaseController < ActionController::API
+    
     include Pundit
   
+    # Define error handling and exception 
     after_action :verify_authorized, except: :index
     after_action :verify_policy_scoped, only: :index
   
@@ -8,7 +10,7 @@ class Api::V1::BaseController < ActionController::API
     rescue_from ActiveRecord::RecordNotFound, with: :not_found
   
     private
-  
+    
     def user_not_authorized(exception)
       render json: {
         error: "Unauthorized #{exception.policy.class.to_s.underscore.camelize}.#{exception.query}"

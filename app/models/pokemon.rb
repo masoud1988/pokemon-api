@@ -1,6 +1,7 @@
 class Pokemon < ApplicationRecord
   belongs_to :user
 
+  # Set validations to secure attributes
   validates :number, presence: true
   validates :name, presence: true, uniqueness: true
   validates :type_1, presence: true
@@ -14,11 +15,12 @@ class Pokemon < ApplicationRecord
   validates :generation, presence: true
   validates :legendary, presence: true
 
+  # implement the logic of pg_search for name, type_1, and type_2
   include PgSearch::Model
   pg_search_scope :search_by_name,
     against: [ :name, :type_1, :type_2],
     using: {
-      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+      tsearch: { prefix: true } # <-- now `CharizardMega Cha` will return something!
     }
 
 end

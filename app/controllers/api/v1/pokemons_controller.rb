@@ -3,7 +3,7 @@ class Api::V1::PokemonsController < Api::V1::BaseController
     acts_as_token_authentication_handler_for User, except: [ :index, :show ]
     before_action :set_pokemon, only: [ :show, :update, :destroy]
 
-
+    # GET /api/v1/pokemons - unauthenticated
     def index
         if params[:q].present?
             @pokemons = policy_scope(Pokemon.search_by_name(params[:q]))
@@ -15,10 +15,12 @@ class Api::V1::PokemonsController < Api::V1::BaseController
         end
     end
 
+    # GET /api/v1/pokemons/:id - unauthenticated
     def show
         render json: {status: 'SUCCESS', message: 'Pokemon loaded', data: @pokemon}, status: :ok
     end
     
+    # POST /api/v1/pokemons - authenticated
     def create
         @pokemon = Pokemon.new(pokemon_params)
         @pokemon.user = current_user
@@ -30,6 +32,7 @@ class Api::V1::PokemonsController < Api::V1::BaseController
         end
     end
     
+    # PATCH /api/v1/pokemons/:id - authenticated
     def update
         if @pokemon.update(pokemon_params)
             render json: {status: 'SUCCESS', message: 'Pokemon updated', data: @pokemon}, status: :ok
@@ -38,6 +41,7 @@ class Api::V1::PokemonsController < Api::V1::BaseController
         end
     end
 
+    # DELETE /api/v1/pokemons/:id - authenticated
     def destroy
         @pokemon.destroy
         render json: {status: 'SUCCESS', message: 'Pokemon deleted', data: ''}, status: :ok

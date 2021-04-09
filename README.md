@@ -9,7 +9,7 @@ easy to read and keep maintainability during the project.
 
 The final project has been deployed on **Heroku** which is accessible with this URL :
 
-_THIS IS A HEROKU FREE ACCOUNT AND A LITTLE SLOW TO LOAD THE URL, PLEASE BE PAITIENT !_
+_THIS IS A HEROKU FREE ACCOUNT AND A LITTLE SLOW TO LOAD THE URL, PLEASE BE PATIENT !_
 
         https://petalmd-api.herokuapp.com/api/v1/pokemons
 

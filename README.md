@@ -1,4 +1,4 @@
-# Pokemone API - PetalMD
+# Pokemon API - PetalMD
 
 This is an **API Project** in which the data consists of 800 Pokemon on the **CSV** file
 imported to the projects as seed. This API include **CRUD actions, Search, Pagination**,

@@ -81,7 +81,6 @@ class Api::V1::PokemonsController < Api::V1::BaseController
     end
 
     def page_link(page, rel)
-        # "<#{api_v1_pokemons_url(request.query_parameters.merge(page: page))}>; rel='#{rel}'"
         main_url = request.url.split("?").first
         "<#{main_url}#{ request.query_parameters.merge(page: page) }>; rel='#{rel}'"
     end

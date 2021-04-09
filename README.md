@@ -7,7 +7,7 @@ and **Rspec** for **TDD**.
 Best practices are used throughout the project to make the codes
 easy to read and keep maintainability during the project.
 
-The final project has been deployed on **Heroku** which is accessible with this URL
+The final project has been deployed on **Heroku** which is accessible with this URL :
 
         https://petalmd-api.herokuapp.com/api/v1/pokemons
 
@@ -51,7 +51,7 @@ That’s why it should be use these headers:
         POST # Create a new pokemon
             https://petalmd-api.herokuapp.com/api/v1/pokemons
 
-        to create a pokemon set *usage headers* and put json object in the *Body* of the request
+        To create a pokemon set Usage Header and put json object in the Body of the request
        {
             "number": 1,
             "name": "Lumbanaur",
@@ -73,14 +73,14 @@ That’s why it should be use these headers:
         PUT # Update a specific pokemon
             https://petalmd-api.herokuapp.com/api/v1/pokemons/:id
 
-        to update a pokemon  set Usage Header and put json object in the Body of the request
+        To update a pokemon  set Usage Header and put json object in the Body of the request
 
 - Delete
 
         DELETE # Delete a specific pokemon
             https://petalmd-api.herokuapp.com/api/v1/pokemons/:id
 
-        to update a pokemon  set Usage Header and put json object in the Body of the request
+        To update a pokemon  set Usage Header and put json object in the Body of the request
 
 ## SEARCH
 
@@ -88,23 +88,28 @@ In this project, **pg_search** has been used for searching. Powerful searchabili
 the most practical characteristics of **pg_search** instead of _ActiveRecord search_.
 
 **Elasticsearch** is another great option to search, however, there was some limitation about deploying
-the project on Heroku, which’s why **pg_search** has been chosen.
+the project on **Heroku**, which’s why **pg_search** has been chosen.
 
-Data could be searched based on names, type*1, and type_2.
-To pass a \_query* (?q=(name , type_1, type_2)) to the URL to search a pokemon from the list as demonstrated:
+Data could be searched based on _names_, _type 1_, and _type 2_.
+To pass a _query_ (?q=(name , type_1, type_2)) to the URL to search a pokemon from the list as demonstrated:
 
-        If pokemon with id=8 has a name like "CharizardMega Charizard Y" it could be find :
+    If pokemon with id=8 has a name like "CharizardMega Charizard Y" it could be find :
 
         https://petalmd-api.herokuapp.com/api/v1/pokemons?q=CharizardMega Charizard Y
         https://petalmd-api.herokuapp.com/api/v1/pokemons?q=Charizard
         https://petalmd-api.herokuapp.com/api/v1/pokemons?q=chari
         https://petalmd-api.herokuapp.com/api/v1/pokemons?q=Y
 
+        for all of the URLs find pokemons
+
 ## PAGINATION
 
 **Kaminari** gem is used for pagination. It has been created for frontend developers to have
-easy access and easy navigation within the pages. Pagination includes the total count of
-pokemon, _first_ and _last page_, _previous_ and _next page_.
+easy access and easy navigation within the pages.
+
+Pagination includes the _Total Count_ of
+pokemon, _first page_ and _last page_, _previous page_ and _next page_.
+
 **Pages** and **par_page** could pass to the URL as a parameter to get the pagination.
 There are 10 pokemon on every page by default.
 
